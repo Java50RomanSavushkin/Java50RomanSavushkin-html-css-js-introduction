@@ -5,22 +5,24 @@
   
   .board-row {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    /* flex-direction: row; */
+    /* justify-content: space-around; */
     border: solid 1px black
   
     }
     
   .cell-white {
+
     width: 5vw;
     height: 5vw;
-  
+
     
   }
   .cell-black {
     background-color: black;
     width: 5vw;
     height: 5vw;
+
   
   }
   body {
