@@ -15,7 +15,7 @@ html {
 }
 
 body {
-    --thumbnails-image-width: 25vw;
+    --thumbnails-image-width: 23vw;
     --thumbnails-image-height: 15vw;
     --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.33);
     --details-image-width: 75vw;
@@ -55,6 +55,15 @@ h2 {
     justify-content: center;
     flex-grow: 1;
 }
+.main-class.hidden{
+    /* --thumbnails-image-width: 28vw;
+    --thumbnails-image-height: 18vw;
+    --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.33); */
+    justify-content: space-around;
+}
+.hidden .thumbnails-list{
+    max-height: 60vh;
+}
 
 .details-container {
     display: flex;
@@ -62,6 +71,10 @@ h2 {
     align-items: center;
     margin-bottom: 2vh;
 
+}
+
+.hidden .details-container {
+    display: none;
 }
 
 .details-frame {
@@ -84,16 +97,23 @@ h2 {
 
 }
 
+#hide-button {
+    position: absolute;
+    right: 3vw;
+    top: 2.5vh;
+}
+
 .thumbnails-list {
     display: flex;
     flex-wrap: wrap;
     max-height: 37vh;
     overflow-y: scroll;
     list-style: none;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding-left: 0;
     margin-top: 3vh;
 }
+
 
 .thumbnails-item {
     border: solid 1px rgb(0, 0, 0);
@@ -103,7 +123,8 @@ h2 {
     min-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height));
     min-width: var(--thumbnails-image-width);
     max-width: var(--thumbnails-image-width);
-    margin-left: 1vw;
+    min-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height));
+    margin: 1vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -135,11 +156,11 @@ h2 {
 
 @media (min-width: 560px) {
     body {
-        --thumbnails-image-width: 12vw;
-        --thumbnails-image-height: 8vw;
+        --thumbnails-image-width: 16vw;
+        --thumbnails-image-height: 10vw;
         --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.25);
-        --details-image-width: 55vw;
-        --details-image-height: 35vw;
+        --details-image-width: 60vw;
+        --details-image-height: 38vw;
     }
 
     .logo {
@@ -167,10 +188,23 @@ h2 {
 
 
     }
+    .hidden .thumbnails-list{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-height: 75vh;
+        
+    }
 
     .thumbnails-title {
         font-size: 0.85em;
     }
+    .thumbnails-item {
+        
+        margin-left: 1vw;
+        
+    }
+
 
 
 
@@ -189,8 +223,22 @@ h2 {
     }
 
     .thumbnails-title {
-        font-size: 1.2em;
+        font-size: 2.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
+
+    .details-title{
+        font-size: 2.0em;
+    }
+
+    .logo{
+        font-size: 3em;
+    }
+
+
 
 
 }
