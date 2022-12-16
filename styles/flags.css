@@ -55,13 +55,15 @@ h2 {
     justify-content: center;
     flex-grow: 1;
 }
-.main-class.hidden{
+
+.main-class.hidden {
     /* --thumbnails-image-width: 28vw;
     --thumbnails-image-height: 18vw;
     --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.33); */
     justify-content: space-around;
 }
-.hidden .thumbnails-list{
+
+.hidden .thumbnails-list {
     max-height: 60vh;
 }
 
@@ -70,7 +72,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     margin-bottom: 2vh;
-
+    transition: 5s cubic-bezier(0.8, 2, 0.2, 1);
 }
 
 .hidden .details-container {
@@ -123,7 +125,7 @@ h2 {
     min-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height));
     min-width: var(--thumbnails-image-width);
     max-width: var(--thumbnails-image-width);
-    min-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height));
+    max-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height));
     margin: 1vw;
     display: flex;
     flex-direction: column;
@@ -154,6 +156,12 @@ h2 {
 
 }
 
+.is-point {
+    transform: scale(0.001);
+    transition: 0s;
+
+}
+
 @media (min-width: 560px) {
     body {
         --thumbnails-image-width: 16vw;
@@ -176,6 +184,7 @@ h2 {
     .details-container {
         justify-content: center;
         margin-bottom: 0;
+
     }
 
     .thumbnails-list {
@@ -188,21 +197,28 @@ h2 {
 
 
     }
-    .hidden .thumbnails-list{
+
+    .hidden .thumbnails-list {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-around;
         max-height: 75vh;
-        
+
     }
 
     .thumbnails-title {
         font-size: 0.85em;
+       
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     }
+
     .thumbnails-item {
-        
         margin-left: 1vw;
+
         
+
     }
 
 
@@ -219,25 +235,33 @@ h2 {
     .thumbnails-list {
 
         margin-top: 2.5vh;
-        max-height: 86vh;
+        max-height: 75vh;
+        
     }
 
     .thumbnails-title {
-        font-size: 2.5em;
+        font-size: 2em;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     }
 
-    .details-title{
-        font-size: 2.0em;
+    .details-title {
+        font-size: 2em;
     }
 
-    .logo{
+    .logo {
         font-size: 3em;
     }
 
+    body {
+        --thumbnails-image-width: 16vw;
+        --thumbnails-image-height: 10vw;
+        --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.25);
+        --details-image-width: 47vw;
+        --details-image-height: 30vw;
+    }
 
 
 

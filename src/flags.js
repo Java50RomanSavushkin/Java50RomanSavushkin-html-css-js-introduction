@@ -3,8 +3,15 @@ const detailsTitle = document.querySelector(".details-title");
 const anchorElements = document.querySelectorAll(".thumbnails-anchor");
 const mainElement = document.querySelector(".main-class")
 const HIDDEN = "hidden";
+const detailsContainer = document.querySelector(".details-container");
+const IS_POINT = "is-point";
+
 function showDitails() {
     mainElement.classList.remove(HIDDEN);
+    detailsContainer.classList.add(IS_POINT);
+    setTimeout(function(){
+        detailsContainer.classList.remove(IS_POINT);
+    })
 }
 function hideDetails() {
     mainElement.classList.add(HIDDEN)
@@ -19,4 +26,4 @@ for (let i = 0; i < anchorElements.length; i++) {
         setDetails(anchorElements[i]);
     })
 }
-hideButtonElement.addEventListener("click", hideDetails);
+// hideButtonElement.addEventListener("click", hideDetails);
