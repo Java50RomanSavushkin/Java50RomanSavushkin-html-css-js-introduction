@@ -19,7 +19,7 @@ function showDetails() {
 function hideDetails() {
     mainElement.classList.add(HIDDEN)
     audio.pause();
-    audio.currentTime = 0;
+    // audio.currentTime = 0;
 }
 
 function setDetails(anchor) {
