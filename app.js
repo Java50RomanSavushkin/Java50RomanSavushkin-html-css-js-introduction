@@ -13,16 +13,22 @@ function getDigitsSum(number) {
     }
     return sum;
 }
-console.log("Digits sum: " + getDigitsSum(123.45));
+console.log("Digits sum: " + getDigitsSum(0));
 console.log("Digits sum: " + getDigitsSum(-280.123));
 console.log("Digits sum: " + getDigitsSum(123));
 
 //2
 function computeExpression(expressionString) {
-    return eval(expressionString);
-
+    let res;
+    try {
+        res = eval(expressionString);
+        // return res;
+    } catch (e) {
+        res + "NaN";
+    }
+    return res;
 }
-console.log("Expression = " + (9000 / ((10 + 20) ** 2)))
+console.log("Expression = " + (9000 / ((c + 20) ** 2)))
 console.log("Expression = " + (9 + 100 / 2))
 
 //3
