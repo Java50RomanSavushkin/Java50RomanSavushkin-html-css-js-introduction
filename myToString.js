@@ -1,36 +1,3 @@
-//HW-12
-
-//1
-function myParseInt(str, base) {
-    base = base || 10;
-    let res = 0;
-    let negative = false;
-    let i = 0;
-    if (str[0] === '-') {
-        negative = true;
-        i = 1;
-    }
-    for (i; i < str.length; i++) {
-        res = res * base + getCode(str[i]);
-    }
-    if (negative) {
-        return Math.trunc(-res);
-    }
-    else {
-        return Math.trunc(res);
-    }
-}
-function getCode(symbol) {
-    symbol = symbol.toLowerCase();
-    const codeA = 'a'.charCodeAt();
-    const res = symbol <= '9' ? +symbol : symbol.charCodeAt() - codeA + 10;
-    return res;
-}
-console.log((parseInt("-123")));
-console.log((parseInt("123")));
-console.log((parseInt("123.35")));
-
-//2
 function myToString(number, base) {
     base = base || 10;
     let negative = false;
@@ -71,8 +38,7 @@ function getSymbol(digit) {
     }
     return symbol;
 }
-console.log(myToString(123))
 console.log(myToString(123.45))
+console.log(myToString(123))
 console.log(myToString(-123))
-
 
