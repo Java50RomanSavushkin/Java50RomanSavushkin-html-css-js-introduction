@@ -1,9 +1,9 @@
-//HW-12
-
-//1
 function myParseInt(str, base) {
     base = base || 10;
     let res = 0;
+    if (getCode(str[0]) >= base) {
+        return NaN;
+    }
     let negative = false;
     let i = 0;
     if (str[0] === '-') {
@@ -11,6 +11,9 @@ function myParseInt(str, base) {
         i = 1;
     }
     for (i; i < str.length; i++) {
+        if (str[i] === '.' || getCode(str[i]) >= base) {
+            break;
+        }
         res = res * base + getCode(str[i]);
     }
     if (negative) {
@@ -26,21 +29,25 @@ function getCode(symbol) {
     const res = symbol <= '9' ? +symbol : symbol.charCodeAt() - codeA + 10;
     return res;
 }
-console.log((parseInt("-123")));
-console.log((parseInt("123")));
-console.log((parseInt("123.35")));
+console.log(myParseInt("123.35"));
+console.log(myParseInt("12a"));
+console.log(myParseInt("-123"));
+console.log(myParseInt("123m"));
+console.log(myParseInt("m123"));
+console.log(myParseInt("-ff", 16));
 
-//2
 function myToString(number, base) {
     base = base || 10;
-    let negative = false;
+    negative = false;
     if (number < 0) {
         negative = true;
         number = -number;
     }
-    let intPart = Math.trunc(number);
-    let FracPart = number - intPart;
-    let res = '';
+    number = number + '';
+    numArr = number.split(".");
+    intPart = Number(numArr[0]);
+    FracPart = Number(numArr[1]);
+    res = '';
     do {
         const digit = intPart % base;
         const symbol = getSymbol(digit);
@@ -49,9 +56,7 @@ function myToString(number, base) {
     }
     while (intPart);
     if (FracPart) {
-        fixed = FracPart.toFixed(2);
-        slice = fixed.slice(2);
-        res = res + '.' + slice;
+        res = res + '.' + FracPart;
     }
     if (negative) {
         return '-' + res;
@@ -71,8 +76,12 @@ function getSymbol(digit) {
     }
     return symbol;
 }
-console.log(myToString(123))
-console.log(myToString(123.45))
 console.log(myToString(-123))
+console.log(myToString(123.45))
+console.log(myToString((123),16))
+console.log(myToString(123))
+console.log(myToString((123.45), 36))//incorrect return 
+
+
 
 
