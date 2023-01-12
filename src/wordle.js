@@ -13,6 +13,7 @@ let word;
 let flGameOver = false;
 //functions
 function startGame() {
+    guessInputElement.readOnly = false;
     word = getWord();
     fillLettersDivs();
     flGameOver = false;
@@ -47,6 +48,7 @@ function onChange() {
             playAgainElement.style.display = "block";
             guessInputElement.value = "";
             guessInputElement.readOnly = true;
+            
         }
         trialsElement.innerHTML = `remained trials ${trials}`;
         if (trialWord.length != word.length) {
