@@ -14,52 +14,32 @@ const employees = [
 
 //HW-18
 function getEmployee(employees, id) {
-    return employees.find(function (empl) {
-        return empl.id === id;
-    })
+    return employees.find(empl => empl.id === id);
 }
 //console.log(getEmployee(employees, 128));
 
 function getEmployeesSalary(employees, salaryFrom, salaryTo) {
-    const emplAr = [];
-    employees.forEach(function (empl) {
-        if (empl.salary >= salaryFrom && empl.salary <= salaryTo) {
-            emplAr.push(empl);
-        }
-    });
-    return emplAr;
+    return employees.filter(empl => empl.salary >= salaryFrom && empl.salary <= salaryTo)
 }
 //console.log(getEmployeesSalary(employees, 15000, 20000))
 
 function getEmployeesByCity(employees, city) {
-    const emplAr = [];
-    employees.forEach(function (empl) {
-        if (empl.address.city === city) {
-            emplAr.push(empl);
-        }
-    })
-    return emplAr;
+    return employees.filter(empl => empl.address.city === city)
 }
 //console.log(getEmployeesByCity(employees, "Lod"))
 
 function getEmployeeNames(employees) {
-    const emplAr = employees.map(function (empl) {
-        return empl.name
-    })
-    return emplAr;
+    return employees.map(empl => empl.name)
 }
 //console.log(getEmployeeNames(employees))
 
 function sortEmployeesByAge(employees) {
-    return employees.sort(function (a, b) {
-        return b.birthYear - a.birthYear;
-    })
+    return employees.sort((a, b) => b.birthYear - a.birthYear);
 }
 //console.log(sortEmployeesByAge(employees))
 
 function computeSalaryBudget(employees) {
-    return employees.reduce(function (acc, cur) {
-        return acc + cur.salary;
-    }, 0)
+    return employees.reduce((acc, cur) => (acc + cur.salary), 0)
 }
 //console.log(computeSalaryBudget(employees));
+
