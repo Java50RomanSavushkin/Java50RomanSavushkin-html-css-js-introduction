@@ -5,44 +5,42 @@ const jsonData = '{"page":1,"results":[{"adult":false,"backdrop_path":"/tGwO4xcB
 const httpPrefix = "https://image.tmdb.org/t/p/w500";
 const data = JSON.parse(jsonData);
 const bodyElement = document.querySelector("ul");
-const detailsImageElement = document.getElementById("details-image");
 bodyElement.innerHTML += getAnchors()
 const anchorElements = document.querySelectorAll("a");
-function showDetails(index) {
-    console.log(`${httpPrefix}${data.results[index].backdrop_path}`)
-    detailsImageElement.src=`${httpPrefix}${data.results[index].backdrop_path}`
-}
-anchorElements.forEach((anchor, index) =>
- anchor.addEventListener("click",function(){
-    showDetails(index);
- }))
-function getAnchors() {
-    return `${getListItems()}`
-}
-function getListItems() {
-    const itemsArray = data.results.map(movie => 
-        `<li>
-            <a href="#"> 
-                <img src="${httpPrefix}${movie.poster_path}" class="thumbnails-image">
-                <span class="thumbnails-title">
-                   ${movie.original_title}
-                </span>
-            </a>
-        </li>`);
-    return itemsArray.join('');
-}
-
-
-
-
-
 const detailsImage = document.querySelector(".details-image");
 const detailsTitle = document.querySelector(".details-title");
 const detailsContainer = document.querySelector(".details-container");
 const mainElement = document.querySelector(".main-class")
 const hideButtonElement = document.getElementById("hide-button");
+hideButtonElement.addEventListener("click", hideDetails);
 const HIDDEN = "hidden";
 const IS_POINT = "is-point";
+const TITLE_LIMIT = 50;
+
+function showDetails(index) {
+    console.log(`${httpPrefix}${data.results[index].backdrop_path}`)
+    detailsImageElement.src = `${httpPrefix}${data.results[index].backdrop_path}`
+}
+anchorElements.forEach((anchor, index) =>
+    anchor.addEventListener("click", function () {
+        showDetails(index);
+    }))
+function getAnchors() {
+    return `${getListItems()}`
+}
+function getListItems() {
+    const itemsArray = data.results.map(movie =>
+        `<li class="thumbnails-item">
+            <a class="thumbnails-anchor" href="#" data-details-image="${httpPrefix}${movie.poster_path}"
+            data-details-title="${movie.overview}" > 
+                <img src="${httpPrefix}${movie.backdrop_path}" class="thumbnails-image">
+                <span class="thumbnails-title">
+                   ${movie.original_title}
+                </span>
+            </a>
+         </li>`);
+    return itemsArray.join('');
+}
 
 function showDetails() {
     mainElement.classList.remove(HIDDEN);
@@ -60,7 +58,22 @@ function setDetails(anchor) {
     const dataImage = anchor.getAttribute("data-details-image");
     detailsImage.src = dataImage;
     showDetails();
-    detailsTitle.innerHTML = anchor.getAttribute("data-details-title");
+    let longTitle = anchor.getAttribute("data-details-title");
+    detailsTitle.innerHTML = titleShortner(longTitle);
+}
+
+function titleShortner(str) {
+    if (str.length > TITLE_LIMIT) {
+        let i = 0;
+        let code = str.charCodeAt(TITLE_LIMIT);
+        do {
+            i++;
+            code = str.charCodeAt(TITLE_LIMIT + i);
+        }
+        while ((code != 32) && (code != 44) && (code != 58) && (TITLE_LIMIT + i < str.length))
+        str = str.substr(0, TITLE_LIMIT + i) + " ...";
+    }
+    return str
 }
 
 for (let i = 0; i < anchorElements.length; i++) {
@@ -69,5 +82,4 @@ for (let i = 0; i < anchorElements.length; i++) {
     })
 }
 
-hideButtonElement.addEventListener("click", hideDetails);
 
