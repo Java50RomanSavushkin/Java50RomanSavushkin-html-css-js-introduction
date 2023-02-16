@@ -8,11 +8,11 @@ export class DataForm {
     #linkFileElement;
     constructor(parentId) {
         const parentElement = document.getElementById(parentId);
-        if(!parentElement) {
+        if (!parentElement) {
             throw `wrong parent ID ${parentId}`
         }
-        parentElement.innerHTML = 
-        `<form id="${FORM_ID}" class="form-class">
+        parentElement.innerHTML =
+            `<form id="${FORM_ID}" class="form-class">
             <div class="form-group">
                 <input id="${TIME_ID}" required type="number" placeholder="enter playing time">
                 <select id="${LINK_ID}">
@@ -30,11 +30,13 @@ export class DataForm {
         this.setOptions();
     }
     setOptions() {
-        this.#linkFileElement.innerHTML = videoConfig.videoLinks.map(link => 
-            `<option value="${link}">${link}<option>`).join("");
+
+        this.#linkFileElement.innerHTML = videoConfig.videoLinks
+            .map(link =>
+                `<option value="${link}">${link}</option>`).join("");
     }
     addHandler(handlerFun) {
-        this.#formElement.addEventListener('submit', async (event)=> {
+        this.#formElement.addEventListener('submit', async (event) => {
             event.preventDefault();
             const data = {};
             data.time = +this.#timeInputElement.value;
